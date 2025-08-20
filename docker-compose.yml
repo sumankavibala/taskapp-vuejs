@@ -1,0 +1,22 @@
+services:
+  nuxt-app:
+    image: sumankavibala/taskapp-vuejs-nuxt-app:latest
+    ports:
+      - "80:3000"
+    environment:
+      NODE_ENV: production
+    depends_on:
+      - taskapp-nodejs
+    networks:
+      - my-network
+
+  taskapp-nodejs:
+    image: sumankavibala/taskapp-vuejs-taskapp-nodejs:latest
+    ports:
+      - "3002:3002"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
